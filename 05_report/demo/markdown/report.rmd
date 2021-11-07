@@ -1,0 +1,18 @@
+---
+title: "Demo Project"
+author: "Student Assistant"
+date: "2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Discussions
+
+This demonstrates how to import the figure.
+
+![Figure 1. demo figure](../../../04_analyze/scatter_regress/figure/figure.pdf){width=65%}
+
+日本語でコメントをすることも可能です。
