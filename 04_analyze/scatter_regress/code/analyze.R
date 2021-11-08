@@ -10,7 +10,7 @@ load_data <- function(file_path){
   file_name <- paste0(data_path, "/intermediate_data.Rds")
   data <- readRDS(file_name)
   return(data)
-}
+} 
 
 
 scatter_plot <- function(input_data, file_path){
