@@ -38,9 +38,6 @@ vignettes/*.pdf
 # R Environment Variables
 .Renviron
 
-# private directory
-00_cover/
-
 # library
 01_admin/preamble/lib/*
 !01_admin/preamble/lib/src

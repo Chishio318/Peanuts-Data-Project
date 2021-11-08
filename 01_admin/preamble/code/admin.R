@@ -1,15 +1,27 @@
-# rm(list = ls())
-Sys.setenv(LANG = "en_US.UTF-8") #set error message in English
+main <- function(){
+  set_error_to_English()
+  clear_environment()
+  prepare_packages()
+}
 
-devtools::update_packages(pkgs = TRUE)
-renv::restore()
 
-cat("\014")   ###clears console
-if(!is.null(dev.list())) dev.off()
+set_error_to_English <- function(){
+  Sys.setenv(LANG = "en_US.UTF-8") 
+}
 
-library("tidyverse")
-tinytex::install_tinytex()
-tinytex::tlmgr_install(c("collection-langgerman",
-                         "collection-langjapanese",
-                         "koma-script",
-                         "enumitem", "setspace", "xpatch"))
+
+clear_environment <- function(){
+  cat("\014")   # console
+  if(!is.null(dev.list())) dev.off() #figures
+}
+
+
+prepare_packages <- function(){
+  renv::restore()
+  devtools::update_packages(pkgs = TRUE)
+  library("tidyverse")
+  tinytex::install_tinytex()
+}
+
+
+main()
