@@ -18,7 +18,8 @@ packages_list <- function(){
              "modelsummary",
              "estimatr",
              "RColorBrewer",
-             "testthat")
+             "testthat",
+             "xtable")
   return(lists)
 }
 
