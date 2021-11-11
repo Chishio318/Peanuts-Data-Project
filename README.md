@@ -2,6 +2,7 @@
 
 - どうやってコードを修正するか
 
+ <img src="00_cover/images/dogflakes.jpg" alt="drawing" width="350"/>
 
 
 00_cover
