@@ -38,11 +38,5 @@ vignettes/*.pdf
 # R Environment Variables
 .Renviron
 
-# library
-01_admin/preamble/lib/*
-!01_admin/preamble/lib/src
-01_admin/preamble/lib/src/*
-!01_admin/preamble/lib/src/contrib
-
 # for mac
 .DS_store
