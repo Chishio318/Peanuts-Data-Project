@@ -9,12 +9,13 @@
 
 ### Inputs.
 このプロジェクトは、以下の３つのデータセットを用いている。
-- breakfast
-- test scores
-- student ID
+- [breakfast](https://github.com/Chishio318/Nobita_project/tree/master/02_read/breakfast/docs)
+- [test scores](https://github.com/Chishio318/Nobita_project/tree/master/02_read/test_scores/docs)
+- [student ID](https://github.com/Chishio318/Nobita_project/tree/master/02_read/student_id/docs)
 
 ### Outputs
 このプロジェクトの分析結果は、この報告書に説明されている。
 
 
 ### Process.
+全体を統合する``R script``は、[homerun](https://github.com/Chishio318/Nobita_project/blob/master/01_admin/homerun)フォルダーに整理されている。こちらを実行することで、データ分析を再現できる。
