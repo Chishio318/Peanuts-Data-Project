@@ -1,40 +1,20 @@
-# Impact of Dog Flakes on Test Scores
+# Peanuts Data Project
 
-- どうやってコードを修正するか
+### Objective.
+このプロジェクトは、朝ごはんが成績とどのような関係を持っているかを、Peanutsの登場キャラクターのデータを用いて分析する。
+- 好物であるパンケーキを朝ごはんに食べることは、よい成績と相関があるか
+- アレルギーのもとになる"dog flake"を朝ごはんに食べることは、悪い成績と関連しているか
 
+ <img src="00_cover/images/dogflakes.jpg" alt="drawing" width="300"/>
 
+### Inputs.
+このプロジェクトは、以下の３つのデータセットを用いている。
+- breakfast
+- test scores
+- student ID
 
-00_cover
-
-- contains ``.gitignore'' file that must not be deleted
-
-
-
-drawback: this can be very heavy.
-
-- because of renv, it will take some time to run this script for the first time.
-
-[See](https://rstudio.github.io/renv/articles/renv.html)
-
-When you wish to add new packages for your analysis, please go to
-
-```
-packages_list <- function(){
-  lists <- c("tidyverse",
-             "rmarkdown",
-             "here",
-             "kableExtra",
-             "tinytex",
-             "conflicted",
-             "devtools",
-             "data.table",
-             "knitr",
-             "modelsummary",
-             "estimatr")
-  return(lists)
-}
-```
+### Outputs
+このプロジェクトの分析結果は、この報告書に説明されている。
 
 
-
-おそらくTinyTeXのインストールで6分くらい使ったと思うので、まだ4分くらい残ってるはずだ。残りの時間を日本語の設定にあてよう。
+### Process.
