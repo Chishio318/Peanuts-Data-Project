@@ -1,1 +1,0 @@
-Independent variables folder
