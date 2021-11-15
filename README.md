@@ -16,5 +16,7 @@
 ### Outputs
 このプロジェクトの分析結果は、この報告書に説明されている。
 
+- need to put Overleaf URL for the access
+- need to clarify external dependencies
 
 ### Process.
