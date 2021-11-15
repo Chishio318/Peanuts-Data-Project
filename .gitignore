@@ -40,3 +40,6 @@ vignettes/*.pdf
 
 # for mac
 .DS_store
+
+# prevent any logs from committing
+*.log
