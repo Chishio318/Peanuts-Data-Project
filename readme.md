@@ -18,10 +18,9 @@
 - [student ID](https://github.com/Chishio318/Nobita_project/tree/master/02_read/student_id/docs)
 
 ### 4. Process
-全体を統合する``R script``は、[homerun](https://github.com/Chishio318/Nobita_project/blob/master/01_admin/homerun)フォルダーに整理されている。こちらを実行することで、データ分析を再現できる。
+全体を統合する``R script``は、[master](https://github.com/Chishio318/Nobita_project/blob/master/01_admin/master)フォルダーの``admin.R``に整理されている。こちらを実行することで、データ分析を再現できる。
 
 ### 5. Details
 ``Wiki``にプログラムのステップを説明してある。
-
-- need to put Overleaf URL for the access
+- [Overleaf](https://www.overleaf.com/read/sybhtxktnrhj)のページから、文書を確認できる。
 - need to clarify external dependencies
