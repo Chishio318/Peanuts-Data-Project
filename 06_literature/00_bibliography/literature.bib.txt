@@ -1,6 +1,6 @@
 @book{peanuts_book,
   title={A Peanuts book featuring Snoopy 1},
-  editor={チャールズ M.シュルツ, 谷川 俊太郎},
+  author={チャールズ M.シュルツ, 谷川 俊太郎},
   year={1990},
   publisher={Kodokawa},
 }
