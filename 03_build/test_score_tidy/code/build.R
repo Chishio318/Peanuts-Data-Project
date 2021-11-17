@@ -1,6 +1,5 @@
 main <- function(){
   my_folder <- "test_score"
-  
   raw_data <- read_raw(my_folder,
                        file_name = "James Street Elementary School Tests.csv")
   
@@ -9,7 +8,7 @@ main <- function(){
     prep_nonnumeric() %>% 
     prep_asserts()
 
-  save_tidy(tidy_data, my_folder)
+  save_interim(tidy_data, my_folder, extension = "tidy")
 }
 
 
