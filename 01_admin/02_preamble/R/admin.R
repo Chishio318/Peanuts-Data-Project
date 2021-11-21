@@ -27,4 +27,8 @@ initialize_time <- function(){
   tictoc::tic("master")
 }
 
+#sink(file = log, append = TRUE, split = TRUE, type = "output")
+#sink(file = log, append = TRUE, type = "message")
+
+
 main()

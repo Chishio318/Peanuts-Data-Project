@@ -1,29 +1,31 @@
 main <- function(){
   my_folder <- "pancakes_study"
   
-  data_master <- read_interim("master")
+  data_master <- mybase::read_interim("master")
   
   reg_formula = list("Average" = implied_test ~ n_pancakes)
   main_varnames <- c('n_pancakes' = 'freq(pancakes)',
                      '(Intercept)' = 'Constant')
-
   data_master %>% 
-    lay_regressions(reg_formula,
-                    cluster_name = student, fe_name = student) %>%
-    format_and_save_table(my_file = "initial_reg",
-                          my_title = "Initial regressions",
-                          my_varnames = main_varnames,
-                          my_folder = my_folder)
+    run_regressions(
+      reg_formula,
+      cluster_name = student, 
+      fe_name = student) %>%
+    format_and_save_table(
+      my_file = "initial_reg",
+      my_title = "Initial regressions",
+      my_varnames = main_varnames,
+      my_folder = my_folder)
   
-  # data_analysis %>% 
-  #   study_scatter() %>% 
-  #   save_my_plot(folder = my_folder)
-  
+  data_master %>%
+    run_scatter(
+      x_var = n_pancakes,
+      y_var = implied_test,
+      group_var = student) %>%
+    mybase::save_my_plot(folder = my_folder)
 }
 
-lay_regressions <- function(data_input, model_input,
-                            cluster_name,
-                            fe_name){
+lay_regressions <- function(data_input, model_input, cluster_name, fe_name){
   cluster_name <- rlang::enquo(cluster_name)
   fe_name <- rlang::enquo(fe_name)
   
@@ -45,8 +47,8 @@ lay_regressions <- function(data_input, model_input,
   return(estimates_lists)
 }
 
-format_and_save_table <- function(estimates_lists, my_file_name, my_title, 
-                                  my_varnames, my_folder){
+format_and_save_table <- function(estimates_lists, my_file_name, 
+                                  my_title, my_varnames, my_folder){
   my_file_tex0 <- paste0(my_file_name, ".tex")  
   my_file_png0 <- paste0(my_file_name, ".png")  
   my_file_tex <- here::here("04_analyze", my_folder, "table", my_file_tex0)
@@ -55,9 +57,9 @@ format_and_save_table <- function(estimates_lists, my_file_name, my_title,
   my_content <- "^(?!R2|Num)"
   my_fmt <- "%.2f"
   
-
+  
   my_rows <- tibble::tribble(~term,  ~'OLS',  ~'FE',
-                     'Clustering', 'Y', 'Y')
+                             'Clustering', 'Y', 'Y')
   attr(my_rows, 'position') <- 5
   
   table_tex <- modelsummary::msummary(
@@ -86,6 +88,16 @@ format_table <- function(table_input){
   return(table_output)
 }
 
+run_scatter <- function(data_input, x_var, y_var, group_var){
+  require(ggplot2)
+  plot_output <- ggplot(data = data_input,
+                        mapping = aes(x = x_var,
+                                      y = y_var,
+                                      group = group_var,
+                                      color = group_var)) +
+    geom_point()
+  return(plot_output)
+}
 
 
 main()
