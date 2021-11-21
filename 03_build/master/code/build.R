@@ -39,7 +39,7 @@ prep_id <- function(data_input){
 }
 
 prep_merge <- function(breakfast_data, test_data, id_data){
-  breakfast_id <- breakfast_data %>% 
+  data_output <- breakfast_data %>% 
     dplyr::left_join(id_data, by = c("full_name" = "Student.Names")) %>% 
     dplyr::left_join(test_data, by = c("Student_ID",
                                        "month_id" = "month"))

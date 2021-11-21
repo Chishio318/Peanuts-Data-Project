@@ -2,6 +2,7 @@ main <- function(){
   set_error_to_English()
   clear_environment()
   prepare_packages()
+  #set_log()
   initialize_time()
 }
 
@@ -18,17 +19,29 @@ clear_environment <- function(){
 
 prepare_packages <- function(){
   renv::restore()
-  devtools::update_packages(pkgs = TRUE)
+  #devtools::update_packages(packages = TRUE)
   library("magrittr")
-  tinytex::install_tinytex()
+  # tinytex::install_tinytex()
+  ggplot2::theme_set(ggplot2::theme_light())
+}
+
+set_log <- function(){
+  main_name <- here::here(
+    "05_report", 
+    "log",
+    format(Sys.time(), "%d-%b-%Y %H.%M")
+  )
+  
+  output_name <- paste0(main_name, "_output.txt")
+  message_name <- paste0(main_name, "_message.txt")
+  message_file <- file(message_name, open = "a")
+  
+  sink(file = output_name, append = TRUE, split = TRUE, type = "output")
+  sink(file = message_file, type = "message")
 }
 
 initialize_time <- function(){
   tictoc::tic("master")
 }
-
-#sink(file = log, append = TRUE, split = TRUE, type = "output")
-#sink(file = log, append = TRUE, type = "message")
-
 
 main()

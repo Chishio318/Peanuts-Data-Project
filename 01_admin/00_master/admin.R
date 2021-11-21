@@ -1,13 +1,14 @@
 main <- function(){
   assemble()
   build()
-  analyze()
+  #analyze()
   #report()
   settle()
 }
 
 
 assemble <- function(){
+  lets('assemble', 'packages')
   lets('assemble', 'preamble')
   lets('assemble', 'function_libraries')
 }
@@ -44,11 +45,15 @@ settle <- function(){
 
 lets <- function(verb_name, object_name){
   if (verb_name == 'assemble' && object_name == 'preamble'){
-    source(here::here('01_admin', object_name, 'R', 'admin.R'))
+    source(here::here('01_admin', '02_preamble', 'R', 'admin.R'))
+  }
+  
+  else if (verb_name == 'assemble' && object_name == 'packages'){
+    source(here::here('01_admin', '01_packages', 'admin.R'))
   }
   
   else if (verb_name == 'assemble' && object_name == 'function_libraries'){
-    source(here::here('01_admin', object_name, 'admin.R'))
+    source(here::here('01_admin', '03_function_libraries', 'admin.R'))
   }
   
   else if (verb_name == 'build'){
@@ -67,7 +72,7 @@ lets <- function(verb_name, object_name){
   }
   
   else if (verb_name == 'settle' && object_name == 'postamble'){
-    source(here::here('01_admin', object_name, 'admin.R'))
+    source(here::here('01_admin', '04_postamble', 'admin.R'))
   }
   
 }

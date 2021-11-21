@@ -33,6 +33,7 @@ gen_average_tests <- function(data_input){
     dplyr::filter(duplicate_id == 1) %>% 
     dplyr::select(- duplicate_id)
   
+  
   data_output <- data_averages %>%
     dplyr::mutate(subject = "Average") %>% 
     dplyr::bind_rows(ready_data) %>% 

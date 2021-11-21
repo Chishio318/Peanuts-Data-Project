@@ -1,7 +1,7 @@
 main <- function(){
   my_folder <- "pancakes_study"
   
-  data_master <- mybase::read_interim("master")
+  data_master <- read_interim("master")
   
   reg_formula = list("Average" = implied_test ~ n_pancakes)
   main_varnames <- c('n_pancakes' = 'freq(pancakes)',
@@ -10,22 +10,25 @@ main <- function(){
     run_regressions(
       reg_formula,
       cluster_name = student, 
-      fe_name = student) %>%
-    format_and_save_table(
-      my_file = "initial_reg",
-      my_title = "Initial regressions",
-      my_varnames = main_varnames,
-      my_folder = my_folder)
+      fe_name = student) 
+  
+  # %>%
+  #   format_and_save_table(
+  #     my_file = "initial_reg",
+  #     my_title = "Initial regressions",
+  #     my_varnames = main_varnames,
+  #     my_folder = my_folder)
+  # 
   
   data_master %>%
     run_scatter(
       x_var = n_pancakes,
       y_var = implied_test,
       group_var = student) %>%
-    mybase::save_my_plot(folder = my_folder)
+    save_my_plot(folder = my_folder)
 }
 
-lay_regressions <- function(data_input, model_input, cluster_name, fe_name){
+run_regressions <- function(data_input, model_input, cluster_name, fe_name){
   cluster_name <- rlang::enquo(cluster_name)
   fe_name <- rlang::enquo(fe_name)
   
@@ -65,15 +68,17 @@ format_and_save_table <- function(estimates_lists, my_file_name,
   table_tex <- modelsummary::msummary(
     estimates_lists, gof_omit = my_content, fmt = my_fmt, title = my_title, 
     coef_map = my_varnames, add_rows = my_rows,
-    output = "latex", booktabs = TRUE) %>% 
-    format_table()
+    output = "latex", booktabs = TRUE) 
+  #%>% 
+  #  format_table()
   writeLines(table_tex, my_file_tex)
   
   table_image <- modelsummary::msummary(
     estimates_lists, gof_omit = my_content, fmt = my_fmt, title = my_title, 
     coef_map = my_varnames, add_rows = my_rows,
-    output = "kableExtra") %>% 
-    format_table()
+    output = "kableExtra") 
+  #%>% 
+  #  format_table()
   kableExtra::save_kable(table_image, my_file_png)
   
 }
@@ -89,12 +94,17 @@ format_table <- function(table_input){
 }
 
 run_scatter <- function(data_input, x_var, y_var, group_var){
+  x_var <- rlang::enquo(x_var)
+  y_var <- rlang::enquo(y_var)
+  group_var <- rlang::enquo(group_var)
+  
   require(ggplot2)
+  
   plot_output <- ggplot(data = data_input,
-                        mapping = aes(x = x_var,
-                                      y = y_var,
-                                      group = group_var,
-                                      color = group_var)) +
+                        mapping = aes(x = !!x_var,
+                                      y = !!y_var,
+                                      group = !!group_var,
+                                      color = !!group_var)) +
     geom_point()
   return(plot_output)
 }
