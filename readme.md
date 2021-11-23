@@ -13,14 +13,17 @@
 
 ### 3. Inputs
 このプロジェクトは、以下の３つのデータセットを用いている。
-- [breakfast](https://github.com/Chishio318/Nobita_project/tree/master/02_read/breakfast/docs)
-- [test scores](https://github.com/Chishio318/Nobita_project/tree/master/02_read/test_scores/docs)
-- [student ID](https://github.com/Chishio318/Nobita_project/tree/master/02_read/student_id/docs)
+- [breakfast](https://github.com/Chishio318/Peanuts-Data-Project/tree/master/02_read/breakfast/docs)
+- [test scores](https://github.com/Chishio318/Peanuts-Data-Project/tree/master/02_read/test_scores/docs)
+- [student ID](https://github.com/Chishio318/Peanuts-Data-Project/tree/master/02_read/student_id/docs)
 
 ### 4. Process
-全体を統合する``R script``は、[master](https://github.com/Chishio318/Nobita_project/blob/master/01_admin/master)フォルダーの``admin.R``に整理されている。こちらを実行することで、データ分析を再現できる。
+全体を統合する``R script``は、[master](https://github.com/Chishio318/Peanuts-Data-Project/blob/master/01_admin/00_master)フォルダーの``admin.R``に整理されている。こちらを実行することで、データ分析を再現できる。
 
 ### 5. Details
 ``Wiki``にプログラムのステップを説明してある。
 - [Overleaf](https://www.overleaf.com/read/sybhtxktnrhj)のページから、文書を確認できる。
 - need to clarify external dependencies
+
+### 6. Dependencies
+このプログラムは、外部プログラムなどに依存せずに実行することができる。
