@@ -3,6 +3,7 @@
 \input{01_admin/02_preamble/tex/JapaneseFonts.tex}
 
 \usepackage{threeparttable}
+\usepackage{float}
 
 \title{朝ごはんと成績に統計的関係があるか \\ -- Peanutsのデータを用いて -- \thanks{本レポートは、データサイエンスの授業において、R/RStudio、Git/GitHub、LaTeX/Overleafを組み合わせて、再生可能なプログラミングと文書作成の例として作成したものである。レポートの書式としては、あくまで内部資料として作成しており、外部向けの論文の形式を取っていない。また、Peanutsの設定は全て仮想である。}}
 
@@ -30,7 +31,34 @@ Peanutsの登場キャラクターたちは、自分たちの経験に基づき�
 
 \newpage
 
-\section{目的}
+\section{はじめに}
+
+\subsection{背景} 
+
+この統計分析は、朝ごはんと成績の関係性を吟味することを目的としている。CharlieやLucieらは、「おいしい朝ごはんを食べることが学校の成績に欠かせない」と信じている。特に、pancakes(和製英語：ホットケーキ)は好物で、トーストやオートミールよりも、pancakesをもっと食べたいと考えている。学術的にも、朝ごはんを食べることが学校の成績と相関していると言われている()。
+
+\subsection{問い}
+
+本レポートでは、James Elementary Schoolと、それぞれの朝ごはんの記録のデータを結び付けて、次の２つの問いについて考える。
+
+\begin{enumerate}
+\item pancakeを食べることは、学校の成績に相関しているだろうか。
+\item 「dog flakesを食べることによって、勉強に集中できず、成績が悪くなった」という主張は、統計的に整合的だろうか。
+\end{enumerate}
+
+\subsection{記述統計}
+
+まず、統計分析をはじめる前に、登場キャラクターが、どのような朝ごはんを食べているかをまとめよう。
+
+\input{04_analyze/breakfast_tidy_check/table/breakfast_renamed}
+
+\begin{itemize}
+\item もっともよく食べるものは、cerealやtoastなどである。
+\item pancakeを食べることは稀であり、特別だということが分かる。
+\item dog flakesを食べなくてはいけないことは数回しかなかった。
+\end{itemize}
+
+\section{分析} 
 
 
 
@@ -46,7 +74,6 @@ Peanutsの登場キャラクターたちは、自分たちの経験に基づき�
 
 \input{05_report/draft/text/initial_reg}
 
-\input{04_analyze/breakfast_tidy_check/table/breakfast_renamed}
 
 Peanutsの登場キャラクターたちは、自分たちの経験に基づき「好きな朝ごはんを食べることが、学校の成績につながる」と考えています。本レポートでは、この統計的根拠を探索し、以下の結果を得ました。(1)朝ごはんに``pancake''を食べることは、小テストの成績と強く相関はしていなかった。(2)Snoopyが``corn flake''の代わりに``dog flake''ばかり買ったときには「朝ごはんに``dog flake''を食べ、アレルギーで勉強に集中できなかった」とCharlieとSallyは言っていますが、これについては整合的な根拠が示された。
 
