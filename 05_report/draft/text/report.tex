@@ -65,21 +65,54 @@ Peanutsの登場キャラクターたちは、自分たちの経験に基づき�
 \section{分析} 
 
 \subsection{pancakesと成績の関係}
-ここでは、まず探索的な分析として、
+\subsubsection{散布図}
+まず探索的な分析として、重要な変数の相関などを知るために散布図を描くことが効果的である。図\ref{fig:img1}は、学生ごとに色を変え、ある月のうちのpancake率と成績をプロットしたものである。
 
-
-
-\begin{figure}
+\begin{figure}[h]
 \centering
-\includegraphics[width=7cm]{04_analyze/scatter_regress/figure/figure.pdf}
-
+\includegraphics[width=12cm]{04_analyze/pancakes_study/figure/pancakes_study.pdf}
 \label{fig:img1}
-\caption{Bare figure}
+\caption{pancakeと成績の散布図}
 \end{figure}
 
-\mcfamily\mdseries
+(この図\ref{fig:img1}は、ggplot2パッケージを用いて作成した「探索的図画」である。例えば、変数名やタイトルなどを調整していない。)
+
+\textbf{所感}
+\begin{itemize}
+\item 全体としては、pancakeと成績の間に弱い相関があるように見える。
+\item しかし、この相関は、学生の間の関係であって、それぞれの学生に着目をすれば「pancakeをよく食べた月の方が成績がよかった」というわけではないようである。
+\end{itemize}
+
+\subsubsection{回帰分析}
+この散布図で見られた関係を、回帰分析によってより厳密に考えたいと思います。以下の回帰式を推定したいとします。
+
+\begin{equation}
+Test_{it} = \beta_0 + \beta_{1} \text{frac(pancakes)}_{it} + f_{i} + \varepsilon_{it}
+
+\end{equation}
+
+\begin{itemize}
+\item $Test_{it}$は、数学と英語の平均の点数
+\item frac(pancakes)$_{it}$ は、学生$i$にとって月$t$に食べたpancakeの率
+\item $f_i$ は、学生$i$のダミー変数であり、固定効果を推定するためにある
+\end{itemize}
+
+ここで、関心のある推定量は$\beta_{1}$であり、pancake率が上昇することによって、成績が何ポイント改善するかを表している。
 
 \input{05_report/draft/text/initial_reg}
+
+この回帰分析の推定結果が、表1にまとめられている。
+
+\textbf{所感:}
+\begin{itemize}
+\item OLSによって、全体の相関を見ると、ある程度の相関が見られる。
+\item FEによって、個々人の学生にとっての相関を見ると、その相関はほとんどなくなっている。
+\end{itemize}
+
+(ここでは、統計的有意水準は示していない。これは、帰無仮説検定によってのみ結論の判断をすることを避けるためである。)
+
+\subsection{dog flakesと成績の関係}
+
 
 
 \bibliographystyle{econ} 
