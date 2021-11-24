@@ -1,4 +1,4 @@
-Title: Student ID for Peanuts Characters at the James Street Elementary School
+## Title: Student ID for Peanuts Characters at the James Street Elementary School
 
 - Date of Collection: June, 1980
 
