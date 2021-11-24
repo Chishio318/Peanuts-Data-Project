@@ -15,7 +15,7 @@ elucidate_quantile <- function(data, var_name, output_folder){
                    stats = my_statistics) %>% 
     lay_mean_line(stats = my_statistics)
     
-  save_my_plot(my_plot, 
+  save_my_plot(my_plot, !!var_name,
                folder_name = output_folder)
 }
 
@@ -126,5 +126,3 @@ lay_mean_line <- function(plot_input, stats){
   
   return(plot_output)
 }
-
-#added "" to specify functions for "elucidate quantile"
