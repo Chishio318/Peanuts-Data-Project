@@ -7,7 +7,7 @@
 
 
 
-\title{朝ごはんと成績に統計的関係があるか \\ -- Peanutsのデータを用いて -- \thanks{本レポートは、データサイエンスの授業において、R/RStudio、Git/GitHub、LaTeX/Overleafを組み合わせて、再生可能なプログラミングと文書作成の例として作成したものである。レポートの書式としては、あくまで内部資料として作成しており、外部向けの論文の形式を取っていない。また、Peanutsの設定は全て仮想である。}}
+\title{朝ごはんと成績に統計的関係があるか \\ -- Peanutsのデータを用いて -- \thanks{本レポートは、データサイエンスの授業において、R/RStudio、Git/GitHub、LaTeX/Overleafを組み合わせて、再生可能なプログラミングとレポート文書作成の例として作成したものである。レポートの書式としては、あくまで内部資料として作成しており、外部向けの論文の形式を取っていない。また、Peanutsの設定は全て仮想である。}}
 
 \author{Charlie Schultz
 \thanks{Department of Comics. Email: cshultz@comics.edu}  \ \  Chishio Furukawa
@@ -26,7 +26,7 @@
 \vspace{-10pt}\begin{abstract}
 \begin{spacing}{1}
 \noindent 
-Peanutsの登場キャラクターたちは、自分たちの経験に基づき「好きな朝ごはんを食べることが、学校の成績につながる」と考えています。本レポートでは、この統計的根拠を探索し、以下の結果を得ました。(1)朝ごはんに``pancake''を食べることは、小テストの成績と強く相関はしていなかった。(2)Snoopyが``corn flake''の代わりに``dog flake''ばかり買ったときには「朝ごはんに``dog flake''を食べ、アレルギーで勉強に集中できなかった」とCharlieとSallyは言っていますが、これについては整合的な根拠が示された。\\
+Peanutsの登場キャラクターたちは、自分たちの経験に基づき「好きな朝ごはんを食べることが、学校の成績につながる」と考えている。本レポートでは、この統計的根拠を探索し、以下の結果を得た。(1)朝ごはんに``pancake''を食べることは、小テストの成績と強く相関はしていなかった。(2)Snoopyが``corn flake''の代わりに``dog flake''ばかり買ったときには「朝ごはんに``dog flake''を食べ、アレルギーで勉強に集中できなかった」とCharlieとSallyは言っているが、これについては整合的な根拠が示された。\\
 
 \end{spacing}
 \end{abstract}
@@ -99,7 +99,7 @@ Test_{it} = \beta_0 + \beta_{1} \text{frac(pancakes)}_{it} + f_{i} + \varepsilon
 
 ここで、関心のある推定量は$\beta_{1}$であり、pancake率が上昇することによって、成績が何ポイント改善するかを表している。
 
-\input{05_report/draft/text/initial_reg}
+\input{04_analyze/pancakes_study/table/initial_reg}
 
 この回帰分析の推定結果が、表1にまとめられている。
 
@@ -113,7 +113,26 @@ Test_{it} = \beta_0 + \beta_{1} \text{frac(pancakes)}_{it} + f_{i} + \varepsilon
 
 \subsection{dog flakesと成績の関係}
 
+CharlieとSallyは、Snoopyがdog flakesのみしか朝ごはんに買っていなかったときがあったため、アレルギーで勉強をできなかった、と言っている。そこで、dog flakesを食べた月の試験は、実際にBrown兄弟のみ成績の低下が見られたかどうかを検証する。
 
+\begin{figure}[h]
+\centering
+\includegraphics[width=12cm]{00_cover/dogflakes.pdf}
+\label{fig:img2}
+\caption{dog flakesショックとBrown兄弟の成績}
+\end{figure}
+
+(この図\ref{fig:img2}は、ggplot2パッケージを用いて作成した「発表向け図画」である。軸の名称やタイトル、またキャプションなどをつけ、また配色もマニュアルで調整している。)
+
+\textbf{所感:}
+\begin{itemize}
+\item 他の学生と比べ、dog flakeを食べた月と、その次の月の成績が低下していることが見られる。
+\item サンプル数が少ないため統計的検定をすることは難しいかもしれないが、CharlieとSallyの主張は正しい可能性が示唆された。
+\item pancakeに関する分析は、コントロール変数などをあまり入れられていないこともあり、因果的解釈が難しい。これに対して、もし「Snoopyがdog flakesのみを買ったこと」がその他の諸要因とは関係がなかった「外生的ショック」と考えることが妥当ならば、dog flakesの項かとして捉えることができそうであ。
+
+\end{itemize}
+
+\newpage
 
 \bibliographystyle{econ} 
 \bibliography{06_literature/00_bibliography/literature}
