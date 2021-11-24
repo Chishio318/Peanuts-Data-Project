@@ -1,0 +1,28 @@
+\begin{table}
+
+\caption{Initial regressions}
+\centering
+\begin{threeparttable}
+\begin{tabular}[t]{lcc}
+\toprule
+\multicolumn{1}{c}{ } & \multicolumn{1}{c}{(1)} & \multicolumn{1}{c}{(2)} \\
+\cmidrule(l{3pt}r{3pt}){2-2} \cmidrule(l{3pt}r{3pt}){3-3}
+  & OLS & FE\\
+\midrule
+frac(pancakes) & \num{141.58} & \num{89.02}\\
+ & (\num{20.80}) & (\num{117.94})\\
+Constant & \num{42.61} & \\
+ & (\num{4.84}) & \\
+\midrule
+Clustering & Y & Y\\
+Num.Obs. & \num{25} & \num{25}\\
+R2 & \num{0.373} & \num{0.388}\\
+R2 Adj. & \num{0.346} & \num{0.227}\\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+\item \textit{Note: } 
+\item Heteroskedasticity-robust standard errors clustered at students level are reported in the parenthesis.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
