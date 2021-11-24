@@ -18,12 +18,14 @@ save_interim <- function(data, folder_name){
           envir = e)
 }
 
-save_my_plot <- function(my_plot, folder_name){
+save_my_plot <- function(my_plot, var_name, folder_name){
+  var_name <- rlang::enquo(var_name)
+  
   e <- new.env()
   sys.source("01_admin/03_function_libraries/read_and_save.R", 
              envir = e)
   do.call("save_my_plot", 
-                    list(my_plot, folder_name), 
+                    list(my_plot, var_name, folder_name), 
                     envir = e)
 }
       
