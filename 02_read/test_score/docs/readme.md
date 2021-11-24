@@ -1,4 +1,4 @@
-## Title: Test Scores for Peanuts Characters at the James Street Elementary School
+## Test Scores for Peanuts Characters at the James Street Elementary School
 
 - Date of Collection: June, 1980
 
