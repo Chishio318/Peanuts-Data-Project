@@ -1,66 +1,49 @@
 main <- function(){
   my_folder <- "pancakes_study"
-  
   data_master <- read_interim("master")
   
-  reg_formula = list("Average" = implied_test ~ n_pancakes)
-  main_varnames <- c('n_pancakes' = 'freq(pancakes)',
-                     '(Intercept)' = 'Constant')
-  data_master %>% 
-    run_regressions(
-      reg_formula,
-      cluster_name = student, 
-      fe_name = student) 
-  
-  # %>%
-  #   format_and_save_table(
-  #     my_file = "initial_reg",
-  #     my_title = "Initial regressions",
-  #     my_varnames = main_varnames,
-  #     my_folder = my_folder)
-  # 
+  data_master %>%
+    run_regressions() %>% 
+    format_and_save_table(
+      my_file = "initial_reg",
+      my_title = "Initial regressions",
+      my_varnames = main_varnames,
+      my_folder = my_folder)
   
   data_master %>%
     run_scatter(
-      x_var = n_pancakes,
-      y_var = implied_test,
+      x_var = frac_pancake_in_recorded_days,
+      y_var = Average,
       group_var = student) %>%
-    save_my_plot(folder = my_folder)
+    save_my_plot(var_name = "average_test_score", folder = my_folder)
 }
 
-run_regressions <- function(data_input, model_input, cluster_name, fe_name){
-  cluster_name <- rlang::enquo(cluster_name)
-  fe_name <- rlang::enquo(fe_name)
-  
-  OLS_model <- purrr::map(model_input,
-                          ~ estimatr::lm_robust(.x, 
-                                                clusters = !!cluster_name,
-                                                se_type = "stata",
-                                                data = data_input))
-  
-  FE_model <- purrr::map(model_input,
-                         ~ estimatr::lm_robust(.x, 
-                                               clusters = !!cluster_name,
-                                               fixed_effects = ~ !!fe_name,
-                                               se_type = "stata",
-                                               data = data_input))
-  
-  estimates_lists <- c(OLS_model, FE_model)
-  names(estimates_lists) <- c('OLS', 'FE')
-  return(estimates_lists)
+
+run_regressions <- function(data_input){
+  estimates_list <- list(
+    "OLS" = estimatr::lm_robust(
+      Average ~ frac_pancake_in_recorded_days,
+      clusters = student, se_type = "stata",
+      data = data_input
+    ),
+    "FE" = estimatr::lm_robust(
+      Average ~ frac_pancake_in_recorded_days,
+      fixed_effects = ~ student, clusters = student, se_type = "stata",
+      data = data_input
+    )
+  )
+  return(estimates_list)
 }
 
 format_and_save_table <- function(estimates_lists, my_file_name, 
                                   my_title, my_varnames, my_folder){
   my_file_tex0 <- paste0(my_file_name, ".tex")  
-  my_file_png0 <- paste0(my_file_name, ".png")  
+  my_file_html0 <- paste0(my_file_name, ".html")  
   my_file_tex <- here::here("04_analyze", my_folder, "table", my_file_tex0)
-  my_file_png <- here::here("04_analyze", my_folder, "figure", my_file_png0)
+  my_file_html <- here::here("04_analyze", my_folder, "table", my_file_html0)
   
   my_content <- "^(?!R2|Num)"
   my_fmt <- "%.2f"
-  
-  
   my_rows <- tibble::tribble(~term,  ~'OLS',  ~'FE',
                              'Clustering', 'Y', 'Y')
   attr(my_rows, 'position') <- 5
@@ -68,19 +51,16 @@ format_and_save_table <- function(estimates_lists, my_file_name,
   table_tex <- modelsummary::msummary(
     estimates_lists, gof_omit = my_content, fmt = my_fmt, title = my_title, 
     coef_map = my_varnames, add_rows = my_rows,
-    output = "latex", booktabs = TRUE) 
-  #%>% 
-  #  format_table()
+    output = "latex", booktabs = TRUE) %>%
+    format_table()
   writeLines(table_tex, my_file_tex)
   
   table_image <- modelsummary::msummary(
-    estimates_lists, gof_omit = my_content, fmt = my_fmt, title = my_title, 
+    estimates_lists, gof_omit = my_content, fmt = my_fmt, title = my_title,
     coef_map = my_varnames, add_rows = my_rows,
-    output = "kableExtra") 
-  #%>% 
-  #  format_table()
-  kableExtra::save_kable(table_image, my_file_png)
-  
+    output = "html") %>%
+    format_table() %>% 
+    cat(., file = my_file_html)
 }
 
 format_table <- function(table_input){
@@ -108,6 +88,5 @@ run_scatter <- function(data_input, x_var, y_var, group_var){
     geom_point()
   return(plot_output)
 }
-
 
 main()
