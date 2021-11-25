@@ -2,6 +2,9 @@ main <- function(){
   my_folder <- "pancakes_study"
   data_master <- read_interim("master")
   
+  main_varnames <- c('n_pancakes' = 'freq(pancakes)',
+                     '(Intercept)' = 'Constant')
+  
   data_master %>%
     run_regressions() %>% 
     format_and_save_table(
