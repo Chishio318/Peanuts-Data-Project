@@ -1,8 +1,8 @@
 main <- function(){
   assemble()
   build()
-  #analyze()
-  #report()
+  analyze()
+  report()
   settle()
 }
 
