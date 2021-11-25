@@ -1,6 +1,8 @@
 main <- function(){
-  my_folder <- "test_score"
-  tidy_data <- read_interim(my_folder, extension = "tidy")
+  folder_input <- "test_score_tidy"
+  folder_output <- "test_score_ready"
+  
+  tidy_data <- read_interim(folder_input)
   
   non_recorded_score <- 0
   
@@ -8,7 +10,7 @@ main <- function(){
     gen_implied_test(non_recorded_score) %>% 
     gen_average_tests()
   
-  save_interim(ready_data, my_folder, extension = "ready")
+  save_interim(ready_data, folder_output)
 }
 
 gen_implied_test <- function(data_input, non_recorded_score){
@@ -36,7 +38,7 @@ gen_average_tests <- function(data_input){
   
   data_output <- data_averages %>%
     dplyr::mutate(subject = "Average") %>% 
-    dplyr::bind_rows(ready_data) %>% 
+    dplyr::bind_rows(data_input) %>% 
     dplyr::arrange(Student_ID, subject)
   
   return(data_output)

@@ -1,6 +1,8 @@
 main <- function(){
-  my_folder <- "test_score"
-  raw_data <- read_raw(my_folder,
+  folder_input <- "test_score"
+  folder_output <- "test_score_tidy"
+  
+  raw_data <- read_raw(folder_input,
                        file_name = "James Street Elementary School Tests.csv")
   
   tidy_data <- raw_data %>% 
@@ -8,12 +10,12 @@ main <- function(){
     prep_nonnumeric() %>% 
     prep_asserts()
 
-  save_interim(tidy_data, my_folder, extension = "tidy")
+  save_interim(tidy_data, folder_output)
 }
 
 
 read_raw <- function(folder_name, file_name){
-  file_path <- here::here("02_read",folder_name,"data",file_name)
+  file_path <- here::here("02_raw",folder_name,"data",file_name)
   data <- readr::read_csv(file_path)
   return(data)
 }

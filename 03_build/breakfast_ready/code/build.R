@@ -1,14 +1,16 @@
 main <- function(){
-  my_folder <- "breakfast"
-  tidy_data <- read_interim(my_folder, extension = "tidy")
+  folder_input <- "breakfast_tidy"
+  folder_output <- "breakfast_ready"
+
+  tidy_data <- read_interim(folder_input)
 
   ready_data <- tidy_data %>% 
-    gen_dummies() %>% 
-    prep_shape_month()  %>% 
+    gen_dummies() %>%
+    prep_shape_month() %>% 
     gen_pancake_frac() %>% 
     prep_asserts()
   
-  save_interim(ready_data, my_folder, extension = "ready")  
+  save_interim(ready_data, folder_output)  
 }
 
 gen_dummies <- function(data_input){
@@ -30,7 +32,8 @@ prep_shape_month <- function(data_input){
                      n_dogflakes = sum(dogflakes),
                      n_days = dplyr::n(),
                      max_n_days = max_n_days) %>% 
-    dplyr::ungroup()
+    dplyr::ungroup() %>% 
+    dplyr::distinct(student, month, .keep_all = TRUE)
   
   return(data_output)
 }
