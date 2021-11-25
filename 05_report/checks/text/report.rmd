@@ -1,18 +1,58 @@
 ---
-title: "Demo Project"
-author: "Student Assistant"
-date: "2021"
-output: html_document
+title: "Variable Check Report"
+output:
+  html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+
+```{r, echo = FALSE, results="asis"}
+main <- function(){
+  list_folders() -> lists
+  print_lists(lists)
+  
+  #print_each_folder("breakfast_tidy")
+  #print_table_lists("breakfast_tidy")
+  #dothis()
+}
+  
+list_folders <- function(){
+  lists <- c("breakfast_tidy",
+             "breakfast_ready",
+             "test_score_tidy",
+             "test_score_ready")
+  return(lists)
+}
+
+print_lists <- function(lists_input){
+  purrr::map(lists_input, print_each)
+}
+
+print_each <- function(folder_name0){
+  folder_name <- paste0(folder_name0, "_check")
+  
+  my_path_table = here::here("04_analyze",folder_name,"table")
+  table_lists <- list.files(path = my_path_table, pattern = "html", full.names = TRUE)
+  
+  my_path_figure = here::here("04_analyze",folder_name,"figure")
+  figure_lists <- list.files(path = my_path_figure, pattern = "png", full.names = TRUE)
+  
+  all_lists = cbind(table_lists, figure_lists)
+  
+  purrr::map(all_lists, print_either)
+}
+
+print_either <- function(file_name){
+  file_extension <- tools::file_ext(file_name)
+  
+  if (file_extension == "html"){
+    htmltools::includeHTML(file_name)
+  } else if (file_extension == "png") {
+    htmltools::img(src = knitr::image_uri(file_name))
+  }
+}
+
+main()
 ```
 
-## Discussions
-
-This demonstrates how to import the figure.
-
-![Figure 1. demo figure](../../../04_analyze/scatter_regress/figure/figure.pdf){width=65%}
-
-日本語でコメントをすることも可能です。
+##Notes
+- 日本語でのコメントもOK
