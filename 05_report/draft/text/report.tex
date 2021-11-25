@@ -37,11 +37,11 @@ Peanutsの登場キャラクターたちは、自分たちの経験に基づき�
 
 \subsection{背景} 
 
-この統計分析は、朝ごはんと成績の関係性を吟味することを目的としている。CharlieやLucieらは、「おいしい朝ごはんを食べることが学校の成績に欠かせない」と信じている。特に、pancakes(和製英語：ホットケーキ)は好物で、トーストやオートミールよりも、pancakesをもっと食べたいと考えている。学術的にも、朝ごはんを食べることが学校の成績と相関していると言われている\citep{Furuse2020b}。
+この統計分析は、朝ごはんと成績の関係性を検証することを目的としている。CharlieやLucieらは、「おいしい朝ごはんを食べることが学校の成績に欠かせない」と信じている。特に、pancakes (日本語：ホットケーキ)は好物で\citep{peanutsbook}、toastやoatmealよりも、pancakesをもっと食べたいと考えている。学術的にも、朝ごはんを食べることが学校の成績と相関していると言われている\citep{Chandler1995}。
 
 \subsection{問い}
 
-本レポートでは、James Elementary Schoolと、それぞれの朝ごはんの記録のデータを結び付けて、次の２つの問いについて考える。
+本レポートでは、James Street Elementary Schoolと、それぞれの朝ごはんの記録のデータを結び付けて、次の２つの問いについて考える。
 
 \begin{enumerate}
 \item pancakeを食べることは、学校の成績に相関しているだろうか。
@@ -50,15 +50,16 @@ Peanutsの登場キャラクターたちは、自分たちの経験に基づき�
 
 \subsection{記述統計}
 
-まず、統計分析をはじめる前に、登場キャラクターが、どのような朝ごはんを食べているかをまとめよう。
+まず、これらの問いについて考える前に、登場キャラクターが、どのような朝ごはんを食べているかをまとめよう。
 
 \input{04_analyze/breakfast_tidy_check/table/breakfast_renamed}
+
 (この表においては、キャラクターの記録した名前を整理してある。例: corn flake $\rightarrow$ cereal、など)
 
 \textbf{所感:}
 \begin{itemize}
-\item もっともよく食べるものは、cerealやtoastなどである。
-\item pancakeを食べることは稀であり、特別だということが分かる。
+\item もっともよく食べるものは、cerealやoatmealなどである。
+\item pancakeを食べることは、それほど多くないが、ものすごく珍しいわけでもない。
 \item dog flakesを食べなくてはいけないことは数回しかなかった。
 \end{itemize}
 
@@ -66,13 +67,13 @@ Peanutsの登場キャラクターたちは、自分たちの経験に基づき�
 
 \subsection{pancakesと成績の関係}
 \subsubsection{散布図}
-まず探索的な分析として、重要な変数の相関などを知るために散布図を描くことが効果的である。図\ref{fig:img1}は、学生ごとに色を変え、ある月のうちのpancake率と成績をプロットしたものである。
+まず探索的な分析として、重要な変数の相関などを知るために散布図を描くことが効果的である。図\ref{fig:img1}は、学生ごとに色を変え、ある月のうちの「pancake率」とmathとEnglishの成績の平均をプロットしたものである。
 
 \begin{figure}[h]
 \centering
 \includegraphics[width=12cm]{04_analyze/pancakes_study/figure/average_test_score.pdf}
+\caption{pancake率と成績の散布図}
 \label{fig:img1}
-\caption{pancakeと成績の散布図}
 \end{figure}
 
 (この図\ref{fig:img1}は、ggplot2パッケージを用いて作成した「探索的図画」である。例えば、変数名やタイトルなどを調整していない。)
@@ -84,24 +85,36 @@ Peanutsの登場キャラクターたちは、自分たちの経験に基づき�
 \end{itemize}
 
 \subsubsection{回帰分析}
-この散布図で見られた関係を、回帰分析によってより厳密に考えたいと思います。以下の回帰式を推定したいとします。
+この散布図で見られた関係を、回帰分析によってより厳密に考えたい。以下の回帰式を推定したいとします。
 
 \begin{equation}
-Test_{it} = \beta_0 + \beta_{1} \text{frac(pancakes)}_{it} + f_{i} + \varepsilon_{it}
-
+\text{Test}_{it} = \beta_0 + \beta_{1} \text{frac(pancakes)}_{it} + f_{i} + \varepsilon_{it}
 \end{equation}
 
 \begin{itemize}
-\item $Test_{it}$は、数学と英語の平均の点数
-\item frac(pancakes)$_{it}$ は、学生$i$にとって月$t$に食べたpancakeの率
+\item $\text{Test}_{it}$は、数学と英語の平均の点数
+\item frac(pancakes)$_{it}$ は、学生$i$にとって月$t$に食べたpancakeの回数/ 観察が欠損していない日数
 \item $f_i$ は、学生$i$のダミー変数であり、固定効果を推定するためにある
 \end{itemize}
 
 ここで、関心のある推定量は$\beta_{1}$であり、pancake率が上昇することによって、成績が何ポイント改善するかを表している。
 
+% \begin{table}[h]
+% \centering
+
+% \caption{回帰分析}
+% \label{tab:first}
+% \end{table}
+\begin{table}[h!]
+\centering
 \input{04_analyze/pancakes_study/table/initial_reg}
+\caption{\label{tab:widgets}An example table.}
+\end{table}
+
 
 この回帰分析の推定結果が、表1にまとめられている。
+
+\vspace
 
 \textbf{所感:}
 \begin{itemize}
@@ -115,14 +128,14 @@ Test_{it} = \beta_0 + \beta_{1} \text{frac(pancakes)}_{it} + f_{i} + \varepsilon
 
 CharlieとSallyは、Snoopyがdog flakesのみしか朝ごはんに買っていなかったときがあったため、アレルギーで勉強をできなかった、と言っている。そこで、dog flakesを食べた月の試験は、実際にBrown兄弟のみ成績の低下が見られたかどうかを検証する。
 
-\begin{figure}[h]
+\begin{figure}[h!]
 \centering
 \includegraphics[width=12cm]{04_analyze/dog_flakes_study/figure/dog_flakes_study.pdf}
-\label{fig:img2}
 \caption{dog flakesショックとBrown兄弟の成績}
+\label{fig:img2}
 \end{figure}
 
-(この図\ref{fig:img2}は、ggplot2パッケージを用いて作成した「発表向け図画」である。軸の名称やタイトル、またキャプションなどをつけ、また配色もマニュアルで調整している。)
+(この図\ref{fig:img2}は、ggplot2パッケージを用いて作成した「発表向け図」である。軸の名称やタイトル、またキャプションなどをつけ、また配色もマニュアルで調整している。)
 
 \textbf{所感:}
 \begin{itemize}
@@ -136,7 +149,10 @@ CharlieとSallyは、Snoopyがdog flakesのみしか朝ごはんに買ってい�
 
 \bibliographystyle{econ} 
 \bibliography{06_literature/00_bibliography/literature}
-%\bibliography{example}
+%\bibliography{o5_report/draft/lit.bib}
+
+%\bibliographystyle{econ}
+%\bibliography{lit}
 
 
 \end{document}
