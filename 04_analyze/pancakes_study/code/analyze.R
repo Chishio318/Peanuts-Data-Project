@@ -2,7 +2,7 @@ main <- function(){
   my_folder <- "pancakes_study"
   data_master <- read_interim("master")
   
-  main_varnames <- c('n_pancakes' = 'freq(pancakes)',
+  main_varnames <- c('frac_pancake_in_recorded_days' = 'frac(pancakes)',
                      '(Intercept)' = 'Constant')
   
   data_master %>%
