@@ -8,7 +8,7 @@
  <img src="00_cover/images/dogflakes.jpg" alt="drawing" width="300"/>
 
 ### 2. Outputs
-このプロジェクトの分析結果は、この報告書に説明されている。
+このプロジェクトの分析結果は、この[報告書](https://github.com/Chishio318/Peanuts-Data-Project/blob/master/05_report/draft/pdf/Peanuts_Data_Project.pdf)に説明されている。
 
 
 ### 3. Inputs
@@ -23,7 +23,6 @@
 ### 5. Details
 ``Wiki``にプログラムのステップを説明してある。
 - [Overleaf](https://www.overleaf.com/read/sybhtxktnrhj)のページから、文書を確認できる。
-- need to clarify external dependencies
 
 ### 6. Dependencies
 このプログラムは、外部プログラムなどに依存せずに実行することができる。
