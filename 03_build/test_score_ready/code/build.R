@@ -4,10 +4,8 @@ main <- function(){
   
   tidy_data <- read_interim(folder_input)
   
-  non_recorded_score <- 0
-  
   ready_data <- tidy_data %>% 
-    gen_implied_test(non_recorded_score) %>% 
+    gen_implied_test(non_recorded_score = 0) %>% 
     gen_average_tests()
   
   save_interim(ready_data, folder_output)
@@ -34,7 +32,6 @@ gen_average_tests <- function(data_input){
     dplyr::ungroup() %>% 
     dplyr::filter(duplicate_id == 1) %>% 
     dplyr::select(- duplicate_id)
-  
   
   data_output <- data_averages %>%
     dplyr::mutate(subject = "Average") %>% 

@@ -12,8 +12,7 @@ main <- function(){
   tidy_data <- raw_data %>% 
     prep_date(date_order = "ymd") %>% 
     prep_duplicate_counts() %>% 
-    prep_breakfast_synonyms() %>% 
-    prep_asserts()
+    prep_breakfast_synonyms()
   
   save_interim(tidy_data, folder_output)
 }
@@ -34,8 +33,7 @@ read_raw <- function(my_folder, name_lists){
 }
 
 prep_date <- function(data_input, date_order){
-  
-  data_output <- data_input %>% 
+  data_output <- data_input %>%
     dplyr::mutate(
       date_formatted = lubridate::parse_date_time(
         data_input$date,
@@ -45,21 +43,12 @@ prep_date <- function(data_input, date_order){
 }
 
 prep_duplicate_counts <- function(data_input){
-  
-  data_output <- data_input %>% 
-    dplyr::distinct(student, date_formatted)
-  
   data_output <- data_input %>% 
     dplyr::group_by(student, date_formatted) %>% 
     dplyr::mutate(duplicate_id = dplyr::row_number()) %>%
     dplyr::ungroup()
   
   return(data_output)
-}
-
-prep_asserts <- function(data){
-  
-  return(data)
 }
 
 prep_breakfast_synonyms <- function(data_input){

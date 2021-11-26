@@ -83,11 +83,12 @@ run_scatter <- function(data_input, x_var, y_var, group_var){
   
   require(ggplot2)
   
-  plot_output <- ggplot(data = data_input,
-                        mapping = aes(x = !!x_var,
-                                      y = !!y_var,
-                                      group = !!group_var,
-                                      color = !!group_var)) +
+  plot_output <- ggplot(
+    data = data_input,
+    mapping = aes(x = !!x_var,
+                  y = !!y_var,
+                  group = !!group_var,
+                  color = !!group_var)) +
     geom_point()
   return(plot_output)
 }
