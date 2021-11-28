@@ -55,7 +55,9 @@ format_and_save_table <- function(estimates_lists, my_file_name,
     estimates_lists, gof_omit = my_content, fmt = my_fmt, title = my_title, 
     coef_map = my_varnames, add_rows = my_rows,
     output = "latex", booktabs = TRUE) %>%
-    format_table()
+    format_table() %>%
+    sub("\\\\toprule", "\\\\midrule\\\\midrule", .) %>%
+    sub("\\\\bottomrule", "\\\\midrule\\\\midrule", .)
   writeLines(table_tex, my_file_tex)
   
   table_image <- modelsummary::msummary(
