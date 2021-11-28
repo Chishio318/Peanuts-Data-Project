@@ -1,5 +1,6 @@
 main <- function(){
-  data <- read_interim("master")
+  box::use(`functions`/basics)
+  data <- basics$read_interim("master")
   
   dog_flake_month_vector <- gen_dog_flake(data)
   
@@ -11,7 +12,7 @@ main <- function(){
     lay_titles() %>% 
     lay_dog_flakes(dog_flake_month_vector)
   
-  save_my_plot(my_plot, var_name = "dog_flakes_study",
+  basics$save_my_plot(my_plot, var_name = "dog_flakes_study",
                        folder_name = "dog_flakes_study")
 }
 

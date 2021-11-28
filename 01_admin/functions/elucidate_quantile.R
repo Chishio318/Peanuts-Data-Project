@@ -1,6 +1,9 @@
 elucidate_quantile <- function(data, var_name, output_folder){
   var_name <- rlang::enquo(var_name)
-  require(ggplot2)
+  
+  box::use(`functions`/basics)
+  box::use(ggplot2[...])
+  box::use(magrittr[`%>%`])
   
   my_data <- check_and_select(data, !!var_name)
   my_statistics <- gen_summaries(data, !!var_name)
@@ -15,13 +18,14 @@ elucidate_quantile <- function(data, var_name, output_folder){
                    stats = my_statistics) %>% 
     lay_mean_line(stats = my_statistics)
     
-  save_my_plot(my_plot, !!var_name,
+  basics$save_my_plot(my_plot, !!var_name,
                folder_name = output_folder)
 }
 
 
 check_and_select <- function(data_input, var_name){
   var_name <- rlang::enquo(var_name)
+  box::use(magrittr[`%>%`])
   
   data_interim <- data_input %>% 
     dplyr::select(!!var_name)
@@ -36,6 +40,7 @@ check_and_select <- function(data_input, var_name){
 
 gen_summaries <- function(data_input, var_name){
   var_name <- rlang::enquo(var_name)
+  box::use(magrittr[`%>%`])
   
   data_output <- data_input %>% 
     dplyr::summarize(
@@ -54,6 +59,7 @@ gen_summaries <- function(data_input, var_name){
 
 gen_quantile <- function(data_input, var_name, n_obs){
   var_name <- rlang::enquo(var_name)
+  box::use(magrittr[`%>%`])
   
   data_output <- data_input %>% 
     dplyr::mutate(my_rank = rank(!!var_name,
@@ -66,6 +72,7 @@ gen_quantile <- function(data_input, var_name, n_obs){
 
 lay_basic <- function(data_input, var_name){
   var_name <- rlang::enquo(var_name)
+  box::use(ggplot2[...])
   
   plot_output <- ggplot(data = data_input,
                         mapping = aes(x = my_quantile,
@@ -74,6 +81,8 @@ lay_basic <- function(data_input, var_name){
 }
 
 lay_geom <- function(plot_input){
+  box::use(ggplot2[...])
+  
   my_color <- "royalblue4"
   my_shape <- 19 #filled circle
   degree_transparency <- 0.5
@@ -90,6 +99,8 @@ lay_geom <- function(plot_input){
 }
 
 lay_frame <- function(plot_input){
+  box::use(ggplot2[...])
+  
   plot_output <- plot_input +
     scale_x_continuous(breaks = c(0, 0.5, 1),
                        labels = c("0", "1/2", "1"),
@@ -99,6 +110,8 @@ lay_frame <- function(plot_input){
 }
 
 lay_titles <- function(plot_input, main_title, stats){
+  box::use(ggplot2[...])
+  
   obs_title <- paste0("Total obs = ", stats$my_count_all, 
                       ",  Non-missing obs = ", stats$my_count_valid)
   summaries_text <- paste0("Statistics: mean = ", round(stats$my_mean,1),
@@ -115,6 +128,8 @@ lay_titles <- function(plot_input, main_title, stats){
 }
 
 lay_mean_line <- function(plot_input, stats){
+  box::use(ggplot2[...])
+  
   my_color <- "tan2"
   degree_transparency = 0.4
   

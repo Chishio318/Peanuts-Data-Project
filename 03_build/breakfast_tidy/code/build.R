@@ -1,4 +1,6 @@
 main <- function(){
+  box::use(`functions`/basics)
+  
   folder_input <- "breakfast"
   folder_output <- "breakfast_tidy"
   
@@ -14,7 +16,7 @@ main <- function(){
     prep_duplicate_counts() %>% 
     prep_breakfast_synonyms()
   
-  save_interim(tidy_data, folder_output)
+  basics$save_interim(tidy_data, folder_output)
 }
 
 

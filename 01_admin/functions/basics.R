@@ -29,15 +29,15 @@ save_my_plot <- function(my_plot, var_name, folder_name){
   save_path <- here::here('04_analyze', folder_name, 'figure')
   
   var_id <- 2
-  ggsave(pdf_name[var_id],
+  ggplot2::ggsave(pdf_name[var_id],
          width = size2, height = size1, unit = my_unit,
          path = save_path)
-  ggsave(png_name[var_id],
+  ggplot2::ggsave(png_name[var_id],
          width = size2, height = size1, unit = my_unit,
          dpi = "print",
          path = save_path)
   
-  while (!is.null(dev.list()))  dev.off()
+  while (!is.null(grDevices::dev.list()))  grDevices::dev.off()
   
 }
 

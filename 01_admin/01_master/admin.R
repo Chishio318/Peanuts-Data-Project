@@ -1,16 +1,14 @@
 main <- function(){
-  assemble()
+  preamble()
   build()
   analyze()
   report()
-  settle()
+  postamble()
 }
 
 
-assemble <- function(){
-  lets('assemble', 'packages')
-  lets('assemble', 'preamble')
-  lets('assemble', 'function_libraries')
+preamble <- function(){
+  lets('set', 'preamble')
 }
 
 
@@ -39,21 +37,13 @@ report <- function(){
 }
 
 
-settle <- function(){
-  lets('settle', 'postamble')
+postamble <- function(){
+  lets('set', 'postamble')
 }
 
 lets <- function(verb_name, object_name){
-  if (verb_name == 'assemble' && object_name == 'preamble'){
+  if (verb_name == 'set' && object_name == 'preamble'){
     source(here::here('01_admin', '02_preamble', 'R', 'admin.R'))
-  }
-  
-  else if (verb_name == 'assemble' && object_name == 'packages'){
-    source(here::here('01_admin', '01_packages', 'admin.R'))
-  }
-  
-  else if (verb_name == 'assemble' && object_name == 'function_libraries'){
-    source(here::here('01_admin', '03_function_libraries', 'admin.R'))
   }
   
   else if (verb_name == 'build'){
@@ -71,8 +61,8 @@ lets <- function(verb_name, object_name){
                                               object_name, 'output')) 
   }
   
-  else if (verb_name == 'settle' && object_name == 'postamble'){
-    source(here::here('01_admin', '04_postamble', 'admin.R'))
+  else if (verb_name == 'set' && object_name == 'postamble'){
+    source(here::here('01_admin', '03_postamble', 'admin.R'))
   }
   
 }

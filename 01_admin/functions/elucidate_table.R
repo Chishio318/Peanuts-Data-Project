@@ -1,14 +1,15 @@
 elucidate_table <- function(data, var_name, output_folder){
   var_name <- rlang::enquo(var_name)
+  box::use(magrittr[`%>%`])
   
   data %>% 
     gen_table(!!var_name) %>% 
     format_and_save_table(!!var_name, output_folder)
-  
 }
 
 gen_table <- function(data_input, var_name, max_distinct){
   var_name <- rlang::enquo(var_name)
+  box::use(magrittr[`%>%`])
   
   table_output <- data_input %>% 
     dplyr::group_by(!!var_name) %>% 
@@ -32,6 +33,7 @@ gen_table <- function(data_input, var_name, max_distinct){
 
 format_and_save_table <- function(my_table, var_name, output_folder){
   var_name <- rlang::enquo(var_name)
+  box::use(magrittr[`%>%`])
   
   my_file_tex0 <- paste0(var_name, ".tex")  
   varname_id <- 2

@@ -25,7 +25,8 @@ packages_list <- function(){
              "testthat",
              "xtable",
              "tictoc",
-             "rlang")
+             "rlang",
+             "box")
   return(lists)
 }
 

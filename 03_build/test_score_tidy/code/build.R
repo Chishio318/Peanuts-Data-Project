@@ -1,4 +1,6 @@
 main <- function(){
+  box::use(`functions`/basics)
+  
   folder_input <- "test_score"
   folder_output <- "test_score_tidy"
   
@@ -10,7 +12,7 @@ main <- function(){
     prep_nonnumeric() %>% 
     prep_asserts()
 
-  save_interim(tidy_data, folder_output)
+  basics$save_interim(tidy_data, folder_output)
 }
 
 

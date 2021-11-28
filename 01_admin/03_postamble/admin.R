@@ -1,6 +1,7 @@
 main <- function(){
   finish_time()
   #finish_log()
+  clear_all()
 }
 
 
@@ -13,4 +14,10 @@ finish_log <- function(){
   sink(NULL, type = "output")
 }
 
+clear_all <- function(){
+  rm(list = ls(), envir = .GlobalEnv)  # functions
+}
+
 main()
+
+

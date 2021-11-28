@@ -1,17 +1,20 @@
 main <- function(){
-  breakfast_data <- read_interim("breakfast_ready")
-  test_data <- read_interim("test_score_ready")
+  box::use(`functions`/basics)
+  
+  breakfast_data <- basics$read_interim("breakfast_ready")
+  test_data <- basics$read_interim("test_score_ready")
   id_data <- read_raw("student_id", file_name = "JSES students.csv")
   
   breakfast_data_for_merge <- prep_breakfast(breakfast_data)
   id_data_for_merge <- prep_id(id_data)
   
-  master_data <- prep_merge(breakfast_data_for_merge,
-                            test_data,
-                            id_data_for_merge) %>% 
+  master_data <- prep_merge(
+    breakfast_data_for_merge,
+    test_data,
+    id_data_for_merge) %>% 
     prep_outcome_var()
   
-  save_interim(master_data, "master")
+  basics$save_interim(master_data, "master")
 }
 
 

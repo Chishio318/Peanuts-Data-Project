@@ -100,6 +100,13 @@
       "Repository": "CRAN",
       "Hash": "9fe98599ca456d6552421db0d6772d8f"
     },
+    "box": {
+      "Package": "box",
+      "Version": "1.1.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "9b84787d7fa74d7cba737f703317e900"
+    },
     "brio": {
       "Package": "brio",
       "Version": "1.1.2",

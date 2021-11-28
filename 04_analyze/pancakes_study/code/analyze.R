@@ -1,6 +1,7 @@
 main <- function(){
+  box::use(`functions`/basics)
   my_folder <- "pancakes_study"
-  data_master <- read_interim("master")
+  data_master <- basics$read_interim("master")
   
   main_varnames <- c('frac_pancake_in_recorded_days' = 'frac(pancakes)',
                      '(Intercept)' = 'Constant')
@@ -18,7 +19,7 @@ main <- function(){
       x_var = frac_pancake_in_recorded_days,
       y_var = Average,
       group_var = student) %>%
-    save_my_plot(var_name = "average_test_score", folder = my_folder)
+    basics$save_my_plot(var_name = "average_test_score", folder = my_folder)
 }
 
 
@@ -56,7 +57,7 @@ format_and_save_table <- function(estimates_lists, my_file_name,
     coef_map = my_varnames, add_rows = my_rows,
     output = "latex", booktabs = TRUE) %>%
     format_table() %>%
-    add_double_lines_latex()
+    add_double_lines_latex() 
   writeLines(table_tex, my_file_tex)
   
   table_image <- modelsummary::msummary(
@@ -79,8 +80,8 @@ format_table <- function(table_input){
 
 add_double_lines_latex <- function(table_input){
   table_output <- table_input %>% 
-    sub("\\\\toprule", "\\\\hline\\\\hline", .) %>%
-    sub("\\\\bottomrule", "\\\\hline\\\\hline", .)
+    sub("\\\\toprule", "\\\\midrule\\\\midrule", .) %>%
+    sub("\\\\bottomrule", "\\\\midrule\\\\midrule", .)
   return(table_output)
 }
 
