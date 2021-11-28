@@ -56,8 +56,7 @@ format_and_save_table <- function(estimates_lists, my_file_name,
     coef_map = my_varnames, add_rows = my_rows,
     output = "latex", booktabs = TRUE) %>%
     format_table() %>%
-    sub("\\\\toprule", "\\\\midrule\\\\midrule", .) %>%
-    sub("\\\\bottomrule", "\\\\midrule\\\\midrule", .)
+    add_double_lines_latex()
   writeLines(table_tex, my_file_tex)
   
   table_image <- modelsummary::msummary(
@@ -75,6 +74,13 @@ format_table <- function(table_input){
     kableExtra::kable_classic_2(full_width = F) %>% 
     kableExtra::footnote(general = "Heteroskedasticity-robust standard errors clustered at students level are reported in the parenthesis.",
                          threeparttable = T) 
+  return(table_output)
+}
+
+add_double_lines_latex <- function(table_input){
+  table_output <- table_input %>% 
+    sub("\\\\toprule", "\\\\hline\\\\hline", .) %>%
+    sub("\\\\bottomrule", "\\\\hline\\\\hline", .)
   return(table_output)
 }
 
