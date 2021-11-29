@@ -3,7 +3,7 @@ main <- function(){
   
   breakfast_data <- basics$read_interim("breakfast_ready")
   test_data <- basics$read_interim("test_score_ready")
-  id_data <- read_raw("student_id", file_name = "JSES students.csv")
+  id_data <- read_raw("student_id", file_name = "JSES students.xlsx")
   
   breakfast_data_for_merge <- prep_breakfast(breakfast_data)
   id_data_for_merge <- prep_id(id_data)
@@ -17,10 +17,9 @@ main <- function(){
   basics$save_interim(master_data, "master")
 }
 
-
 read_raw <- function(folder_name, file_name){
   file_path <- here::here("02_raw",folder_name,"data",file_name)
-  data <- readr::read_csv(file_path)
+  data <- readxl::read_excel(file_path, skip = 1)
   return(data)
 }
 
