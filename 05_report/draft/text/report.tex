@@ -4,14 +4,14 @@
 
 \usepackage{threeparttable}
 \usepackage{float}
-
+\usepackage{hyperref}
 
 
 \title{朝ごはんと成績に統計的関係があるか \\ -- Peanutsのデータを用いて -- \thanks{本レポートは、データサイエンスの授業において、R/RStudio、Git/GitHub、LaTeX/Overleafを組み合わせて、再生可能なプログラミングとレポート文書作成の例として作成したものである。レポートの書式としては、あくまで内部資料として作成しており、外部向けの論文の形式を取っていない。また、Peanutsの設定は全て仮想である。}}
 
 \author{Charlie Schultz
-\thanks{Department of Comics. Email: cshultz@comics.edu}  \ \  Chishio Furukawa
-\textsuperscript\thanks{Department of Economics. Email:cfurukawa@economics.ac.jp}}
+\thanks{Department of Comics. Email: \href{mailto: cshultz@comics.edu}{ cshultz@comics.edu}}  \ \  Chishio Furukawa
+\textsuperscript\thanks{Department of Economics. Email:\href{mailto: cfurukawa@economics.ac.jp}{ cfurukawa@economics.ac.jp}}}
 
 %\date{\today}
 \date{March, 1988}
@@ -142,7 +142,8 @@ CharlieとSallyは、Snoopyがdog flakesのみしか朝ごはんに買ってい�
 \newpage
 
 \bibliographystyle{econ} 
-\bibliography{06_literature/00_bibliography/literature}
+\bibliography{literature}
+% \bibliography{06_literature/00_bibliography/literature}
 %\bibliography{o5_report/draft/lit.bib}
 
 %\bibliographystyle{econ}
