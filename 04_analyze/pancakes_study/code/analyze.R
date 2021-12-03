@@ -17,7 +17,7 @@ main <- function(){
   data_master %>%
     run_scatter(
       x_var = frac_pancake_in_recorded_days,
-      y_var = Average,
+      y_var = implied_test,
       group_var = student) %>%
     basics$save_my_plot(var_name = "average_test_score", folder = my_folder)
 }
@@ -26,12 +26,12 @@ main <- function(){
 run_regressions <- function(data_input){
   estimates_list <- list(
     "OLS" = estimatr::lm_robust(
-      Average ~ frac_pancake_in_recorded_days,
+      implied_test ~ frac_pancake_in_recorded_days,
       clusters = student, se_type = "stata",
       data = data_input
     ),
     "FE" = estimatr::lm_robust(
-      Average ~ frac_pancake_in_recorded_days,
+      implied_test ~ frac_pancake_in_recorded_days,
       fixed_effects = ~ student, clusters = student, se_type = "stata",
       data = data_input
     )
