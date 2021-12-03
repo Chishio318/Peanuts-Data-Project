@@ -1,16 +1,15 @@
 main <- function(){
   box::use(`functions`/basics)
   
-  folder_input <- "test_score_tidy"
-  folder_output <- "test_score_ready"
+  my_folder <- "test_score"
   
-  tidy_data <- basics$read_interim(folder_input)
+  tidy_data <- basics$read_interim(my_folder, extension = "tidy")
   
   ready_data <- tidy_data %>% 
     gen_implied_test(non_recorded_score = 0) %>% 
     gen_average_tests()
   
-  basics$save_interim(ready_data, folder_output)
+  basics$save_interim(ready_data, my_folder, extension = "ready")
 }
 
 gen_implied_test <- function(data_input, non_recorded_score){

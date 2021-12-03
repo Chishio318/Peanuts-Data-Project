@@ -1,10 +1,9 @@
 main <- function(){
   box::use(`functions`/basics)
   
-  folder_input <- "test_score"
-  folder_output <- "test_score_tidy"
+  my_folder <- "test_score"
   
-  raw_data <- read_raw(folder_input,
+  raw_data <- read_raw(my_folder,
                        file_name = "James Street Elementary School Tests.csv")
   
   tidy_data <- raw_data %>% 
@@ -12,7 +11,7 @@ main <- function(){
     prep_nonnumeric() %>% 
     prep_asserts()
 
-  basics$save_interim(tidy_data, folder_output)
+  basics$save_interim(tidy_data, my_folder, extension = "tidy")
 }
 
 
