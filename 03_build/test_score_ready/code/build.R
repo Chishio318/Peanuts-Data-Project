@@ -28,11 +28,9 @@ gen_average_tests <- function(data_input){
   data_averages <- data_input %>% 
     dplyr::group_by(Student_ID, month) %>% 
     dplyr::transmute(test = mean(test, rm.na = TRUE),
-                     implied_test = mean(implied_test),
-                     duplicate_id = dplyr::row_number()) %>% 
-    dplyr::ungroup() %>% 
-    dplyr::filter(duplicate_id == 1) %>% 
-    dplyr::select(- duplicate_id)
+                     implied_test = mean(implied_test)) %>% 
+    dplyr::distinct() %>% 
+    dplyr::ungroup()
   
   data_output <- data_averages %>%
     dplyr::mutate(subject = "Average") %>% 
@@ -41,5 +39,6 @@ gen_average_tests <- function(data_input){
   
   return(data_output)
 }
+
 
 main()
