@@ -46,7 +46,8 @@ format_and_save_table <- function(estimates_lists, my_file_name,
   my_file_tex <- here::here("04_analyze", my_folder, "table", my_file_tex0)
   my_file_html <- here::here("04_analyze", my_folder, "table", my_file_html0)
   
-  my_content <- "^(?!R2|Num)"
+  my_content <- "^R2$|Std.Errors"
+  
   my_fmt <- "%.2f"
   my_rows <- tibble::tribble(~term,  ~'OLS',  ~'FE',
                              'Clustering', 'Y', 'Y')
