@@ -8,7 +8,7 @@
  <img src="00_cover/images/dogflakes.jpg" alt="drawing" width="300"/>
 
 ### 2. Outputs
-このプロジェクトの分析結果は、この[報告書](https://github.com/Chishio318/Peanuts-Data-Project/blob/master/05_report/draft/pdf/Peanuts_Data_Project.pdf)に説明されている。
+このプロジェクトの分析結果は、この[報告書](https://raw.githubusercontent.com/Chishio318/Peanuts-Data-Project/master/05_report/draft/pdf/Peanuts_Data_Project.pdf)に説明されている。
 
 
 ### 3. Inputs
