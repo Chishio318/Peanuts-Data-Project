@@ -1,5 +1,4 @@
 main <- function(){
-  box::use(`functions`/basics)
   data <- basics$read_interim("master")
   
   dog_flake_month_vector <- gen_dog_flake(data)
@@ -132,4 +131,5 @@ lay_dog_flakes <- function(plot_input, dog_flake_month_vector){
   return(plot_output)
 }
 
+box::use(`functions`/basics)
 main()

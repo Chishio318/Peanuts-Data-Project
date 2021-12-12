@@ -1,6 +1,4 @@
 main <- function(){
-  box::use(`functions`/basics)
-  
   my_folder <- "test_score"
   
   tidy_data <- basics$read_interim(my_folder, extension = "tidy")
@@ -40,5 +38,5 @@ gen_average_tests <- function(data_input){
   return(data_output)
 }
 
-
+box::use(`functions`/basics)
 main()

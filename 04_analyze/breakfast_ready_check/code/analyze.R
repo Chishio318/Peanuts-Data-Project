@@ -1,7 +1,4 @@
 main <- function(){
-  box::use(`functions`/basics)
-  box::use(`functions`/checks)
-  
   my_folder <- "breakfast_ready"
   my_data <- basics$read_interim(my_folder)
   
@@ -16,5 +13,6 @@ main <- function(){
                      my_folder)
 }
 
-
+box::use(`functions`/basics)
+box::use(`functions`/checks)
 main()

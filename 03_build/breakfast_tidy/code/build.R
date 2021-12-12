@@ -1,6 +1,4 @@
 main <- function(){
-  box::use(`functions`/basics) 
-  
   my_folder <- "breakfast"
   
   name_lists <- c("Charlie",
@@ -71,4 +69,5 @@ prep_breakfast_synonyms <- function(data_input){
   return(data_output)
 }
 
+box::use(`functions`/basics) 
 main()

@@ -1,5 +1,4 @@
 main <- function(){
-  box::use(`functions`/basics)
   my_folder <- "pancakes_study"
   data_master <- basics$read_interim("master")
   
@@ -103,4 +102,5 @@ run_scatter <- function(data_input, x_var, y_var, group_var){
   return(plot_output)
 }
 
+box::use(`functions`/basics)
 main()

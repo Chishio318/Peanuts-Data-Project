@@ -1,6 +1,4 @@
 main <- function(){
-  box::use(`functions`/basics)
-  
   my_folder <- "test_score"
   
   raw_data <- read_raw(my_folder,
@@ -62,4 +60,5 @@ prep_asserts <- function(data_input){
   return(data_input)
 }
 
+box::use(`functions`/basics)
 main()

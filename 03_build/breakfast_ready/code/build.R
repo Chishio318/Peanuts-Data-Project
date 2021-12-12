@@ -1,6 +1,4 @@
 main <- function(){
-  box::use(`functions`/basics)
-  
   my_folder <- "breakfast"
 
   tidy_data <- basics$read_interim(my_folder, extension = "tidy")
@@ -55,4 +53,5 @@ prep_asserts <- function(data_input){
   return(data_input)
 }
 
+box::use(`functions`/basics)
 main()

@@ -1,6 +1,4 @@
 main <- function(){
-  box::use(`functions`/basics)
-  
   breakfast_data <- basics$read_interim("breakfast", extension = "ready")
   test_data <- basics$read_interim("test_score", extension = "ready")
   id_data <- read_raw("student_id", file_name = "JSES students.xlsx")
@@ -58,4 +56,5 @@ prep_outcome_var <- function(data_input){
   return(data_output)
 }
 
+box::use(`functions`/basics)
 main()
