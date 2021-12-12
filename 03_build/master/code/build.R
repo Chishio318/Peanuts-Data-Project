@@ -1,8 +1,8 @@
 main <- function(){
   box::use(`functions`/basics)
   
-  breakfast_data <- basics$read_interim("breakfast_ready")
-  test_data <- basics$read_interim("test_score_ready")
+  breakfast_data <- basics$read_interim("breakfast", extension = "ready")
+  test_data <- basics$read_interim("test_score", extension = "ready")
   id_data <- read_raw("student_id", file_name = "JSES students.xlsx")
   
   breakfast_data_for_merge <- prep_breakfast(breakfast_data)
@@ -53,7 +53,7 @@ prep_merge <- function(breakfast_data, test_data, id_data){
 
 prep_outcome_var <- function(data_input){
   data_output <- data_input %>% 
-    tidyr::pivot_wider(names_from = subject, values_from = implied_test)
+    dplyr::filter(subject == "Average")
   
   return(data_output)
 }

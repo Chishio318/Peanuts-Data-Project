@@ -1,8 +1,7 @@
 main <- function(){
-  box::use(`functions`/basics)
+  box::use(`functions`/basics) 
   
-  folder_input <- "breakfast"
-  folder_output <- "breakfast_tidy"
+  my_folder <- "breakfast"
   
   name_lists <- c("Charlie",
                   "Sally",
@@ -10,20 +9,21 @@ main <- function(){
                   "Lucy",
                   "Schroeder")
   
-  raw_data <- read_raw(my_folder = folder_input, name_lists)
+  raw_data <- read_raw(my_folder, name_lists)
   tidy_data <- raw_data %>% 
     prep_date(date_order = "ymd") %>% 
     prep_duplicate_counts() %>% 
     prep_breakfast_synonyms()
   
-  basics$save_interim(tidy_data, folder_output)
+  basics$save_interim(tidy_data, my_folder, extension = "tidy")
 }
 
 
 read_raw <- function(my_folder, name_lists){
   data_list <- name_lists %>% 
     purrr::map(function(name) here::here(
-      "02_raw",my_folder,"data",paste0(name, ".xlsx"))) %>% 
+      "02_raw",my_folder,"data",paste0(name, ".xlsx"))
+      ) %>% 
     purrr::map(readxl::read_excel)
   
   data_output <- data_list %>% 

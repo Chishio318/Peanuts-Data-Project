@@ -1,10 +1,9 @@
 main <- function(){
   box::use(`functions`/basics)
   
-  folder_input <- "breakfast_tidy"
-  folder_output <- "breakfast_ready"
+  my_folder <- "breakfast"
 
-  tidy_data <- basics$read_interim(folder_input)
+  tidy_data <- basics$read_interim(my_folder, extension = "tidy")
 
   ready_data <- tidy_data %>% 
     gen_dummies() %>%
@@ -12,7 +11,7 @@ main <- function(){
     gen_pancake_frac() %>% 
     prep_asserts()
   
-  basics$save_interim(ready_data, folder_output)  
+  basics$save_interim(ready_data, my_folder, extension = "ready")  
 }
 
 gen_dummies <- function(data_input){

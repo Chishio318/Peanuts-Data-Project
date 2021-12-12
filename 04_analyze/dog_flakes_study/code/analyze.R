@@ -36,7 +36,7 @@ gen_month_order <- function(data_input){
       ),
       .after = month
     ) %>% 
-    dplyr::filter(is.na(Average) == FALSE)
+    dplyr::filter(is.na(implied_test) == FALSE)
   
   return(data_output)
 }
@@ -45,7 +45,7 @@ lay_basic <- function(data_input){
   require(ggplot2)
   plot_output <- ggplot(data = data_input,
                         mapping = aes(x = month_order,
-                                      y = Average,
+                                      y = implied_test,
                                       group = student))
   return(plot_output)
 }
