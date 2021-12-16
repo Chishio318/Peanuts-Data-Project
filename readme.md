@@ -21,7 +21,7 @@
 全体を統合する``R script``は、[master](https://github.com/Chishio318/Peanuts-Data-Project/blob/master/01_admin/00_master)フォルダーの``admin.R``に整理されている。こちらを実行することで、データ分析を再現できる。
 
 ### 5. Details
-``Wiki``にプログラムのステップを説明してある。
+[``Wiki``](https://github.com/Chishio318/Peanuts-Data-Project/wiki)にプログラムのステップを説明してある。
 - [Overleaf](https://www.overleaf.com/read/sybhtxktnrhj)のページから、文書を確認できる。
 
 ### 6. Dependencies
